@@ -42,9 +42,9 @@ function grouporder_info()
 	return array(
 		'name' => 'Group Sort',
 		'description' => 'Sort the usergroups and keep the sequence consistent for all users',
-		'website' => 'http://opt-community.de/',
+		'website' => 'https://opt-community.de/',
 		'author' => 'Dieter Gobbers (@TerranUlm)',
-		'authorsite' => 'http://opt-community.de/',
+		'authorsite' => 'https://opt-community.de/',
 		'version' => '1.0.1',
 		'guid' => '',
 		'compatibility' => '16*'
