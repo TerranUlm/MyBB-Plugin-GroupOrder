@@ -40,12 +40,12 @@ if (!defined('IN_MYBB'))
 function grouporder_info()
 {
 	return array(
-		'name' => 'Group Order',
-		'description' => 'Rank the usergroups and keep the order consistent for all users',
+		'name' => 'Group Sort',
+		'description' => 'Sort the usergroups and keep the sequence consistent for all users',
 		'website' => 'http://opt-community.de/',
-		'author' => 'Dieter Gobbers',
+		'author' => 'Dieter Gobbers (@TerranUlm)',
 		'authorsite' => 'http://opt-community.de/',
-		'version' => '1.0',
+		'version' => '1.0.1',
 		'guid' => '',
 		'compatibility' => '16*'
 	);
