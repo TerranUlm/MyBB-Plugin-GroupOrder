@@ -37,7 +37,7 @@ if (!defined('IN_MYBB'))
 
 /* --- Plugin API: --- */
 
-function grouporder_info()
+function groupsort_info()
 {
 	return array(
 		'name' => 'Group Sort',
@@ -51,13 +51,13 @@ function grouporder_info()
 	);
 }
 
-function grouporder_activate()
+function groupsort_activate()
 {
 	global $db, $lang, $cache;
 
-	grouporder_deactivate();
+	groupsort_deactivate();
 	
-	$lang->load('grouporder');
+	$lang->load('groupsort');
 	
 	$updated_record = array(
 		"enabled" => intval(1)
@@ -65,17 +65,17 @@ function grouporder_activate()
 	$db->update_query(
 		'tasks',
 		$updated_record,
-		"title='{$db->escape_string($lang->grouporder_title)}'"
+		"title='{$db->escape_string($lang->groupsort_title)}'"
 	);
 
 	$cache->update_tasks();
 }
 
-function grouporder_deactivate()
+function groupsort_deactivate()
 {
 	global $db, $lang, $cache;
 
-	$lang->load('grouporder');
+	$lang->load('groupsort');
 	
 	$updated_record = array(
 		"enabled" => intval(0)
@@ -83,22 +83,22 @@ function grouporder_deactivate()
 	$db->update_query(
 		'tasks',
 		$updated_record,
-		"title='{$db->escape_string($lang->grouporder_title)}'"
+		"title='{$db->escape_string($lang->groupsort_title)}'"
 	);
 	
 	$cache->update_tasks();
 }
 
-function grouporder_is_installed()
+function groupsort_is_installed()
 {
 	global $db, $lang;
 	
-	$lang->load('grouporder');
+	$lang->load('groupsort');
 
 	$query=$db->simple_select(
 		'tasks',
 		'*',
-		"title='{$db->escape_string($lang->grouporder_title)}'"
+		"title='{$db->escape_string($lang->groupsort_title)}'"
 	);
 	$result=$db->fetch_array($query);
 	$db->free_result($query);
@@ -106,19 +106,19 @@ function grouporder_is_installed()
 	return(!empty($result));
 }
 
-function grouporder_install()
+function groupsort_install()
 {
 	global $db, $lang, $cache;
 	
-	$lang->load('grouporder');
+	$lang->load('groupsort');
 	
 	// create task
 	require_once MYBB_ROOT."/inc/functions_task.php";
 
 	$new_task = array(
-		"title" => $db->escape_string($lang->grouporder_title),
-		"description" => $db->escape_string($lang->grouporder_task_description),
-		"file" => $db->escape_string('grouporder'),
+		"title" => $db->escape_string($lang->groupsort_title),
+		"description" => $db->escape_string($lang->groupsort_task_description),
+		"file" => $db->escape_string('groupsort'),
 		"minute" => $db->escape_string('27'),
 		"hour" => $db->escape_string('4'),
 		"day" => $db->escape_string('*'),
@@ -134,60 +134,60 @@ function grouporder_install()
 
 }
 
-function grouporder_uninstall()
+function groupsort_uninstall()
 {
 	global $db, $lang, $cache;
 	
-	$lang->load('grouporder');
+	$lang->load('groupsort');
 	
-	$db->delete_query("tasks", "title='{$db->escape_string($lang->grouporder_title)}'");
+	$db->delete_query("tasks", "title='{$db->escape_string($lang->groupsort_title)}'");
 	$cache->update_tasks();
 
 }
 
 /* --- Hooks: --- */
 
-/* --- Hook #1 - Add Grouporder Tab --- */
+/* --- Hook #1 - Add groupsort Tab --- */
 
-$plugins->add_hook('admin_user_groups_edit_graph_tabs','grouporder_admin_user_groups_edit_graph_tabs_1',1);
+$plugins->add_hook('admin_user_groups_edit_graph_tabs','groupsort_admin_user_groups_edit_graph_tabs_1',1);
 
-function grouporder_admin_user_groups_edit_graph_tabs_1(&$tabs)
+function groupsort_admin_user_groups_edit_graph_tabs_1(&$tabs)
 {
 	global $lang;
-	$lang->load('grouporder');
-	$tabs["grouporder"] = $lang->grouporder_title;
+	$lang->load('groupsort');
+	$tabs["groupsort"] = $lang->groupsort_title;
 	
 	return $tabs;
 }
 
 /* --- Hook #2 - Add Teamspeak Tab Content --- */
 
-$plugins->add_hook('admin_user_groups_edit_graph','grouporder_admin_user_groups_edit_graph_2',1);
+$plugins->add_hook('admin_user_groups_edit_graph','groupsort_admin_user_groups_edit_graph_2',1);
 
-function grouporder_admin_user_groups_edit_graph_2()
+function groupsort_admin_user_groups_edit_graph_2()
 {
 	global $lang, $form, $mybb;
 
-	$lang->load('grouporder');
+	$lang->load('groupsort');
 
-	echo "<div id=\"tab_grouporder\">";
+	echo "<div id=\"tab_groupsort\">";
 
-	$form_container = new FormContainer($lang->grouporder_title);
+	$form_container = new FormContainer($lang->groupsort_title);
 
-	$form_container->output_row($lang->grouporder_rank, $lang->grouporder_rank_description, $form->generate_text_box('disporder', $mybb->input['disporder'], array('id' => 'disporder')), 'servergroupid');
+	$form_container->output_row($lang->groupsort_rank, $lang->groupsort_rank_description, $form->generate_text_box('disporder', $mybb->input['disporder'], array('id' => 'disporder')), 'servergroupid');
 
 	$form_container->end();
 
 	echo "</div>";
 	
-	grouporder_reorder_all_users();
+	groupsort_reorder_all_users();
 }
 
 /* --- Hook #6 - admin_user_groups_edit_commit --- */
 
-$plugins->add_hook('admin_user_groups_edit_commit','grouporder_admin_user_groups_edit_commit_6',10);
+$plugins->add_hook('admin_user_groups_edit_commit','groupsort_admin_user_groups_edit_commit_6',10);
 
-function grouporder_admin_user_groups_edit_commit_6()
+function groupsort_admin_user_groups_edit_commit_6()
 {
 	global $mybb, $db, $updated_group, $cache;
 
@@ -195,31 +195,31 @@ function grouporder_admin_user_groups_edit_commit_6()
 
 	$db->update_query("usergroups", $updated_group, "gid='{$usergroup['gid']}'");
 	
-	grouporder_reorder_groups();
+	groupsort_reorder_groups();
 	
 	// Update the caches
 	$cache->update_usergroups();
 }
 
-$plugins->add_hook('admin_user_groups_start_commit','grouporder_admin_user_groups_start_commit',10);
+$plugins->add_hook('admin_user_groups_start_commit','groupsort_admin_user_groups_start_commit',10);
 
-function grouporder_admin_user_groups_start_commit()
+function groupsort_admin_user_groups_start_commit()
 {
-	grouporder_reorder_groups();
+	groupsort_reorder_groups();
 }
 
 /* --- Hook #23 - set disporder for groups on creation --- */
 
-$plugins->add_hook('admin_user_groups_add_commit','grouporder_admin_user_groups_add_commit_23',10);
+$plugins->add_hook('admin_user_groups_add_commit','groupsort_admin_user_groups_add_commit_23',10);
 
-function grouporder_admin_user_groups_add_commit_23()
+function groupsort_admin_user_groups_add_commit_23()
 {
 	global $new_usergroup;
 
 	$new_usergroup['disporder']=10000;
 }
 
-function grouporder_reorder_groups()
+function groupsort_reorder_groups()
 {
 	global $db;
 	
@@ -244,7 +244,7 @@ function grouporder_reorder_groups()
 	$db->free_result($query);
 }
 
-function grouporder_reorder_all_users()
+function groupsort_reorder_all_users()
 {
 	global $db, $mybb;
 	
@@ -270,12 +270,12 @@ function grouporder_reorder_all_users()
 	);
 	while($uid = $db->fetch_field($query, 'uid'))
 	{
-		grouporder_reorder_user($uid, $all_usergroups);
+		groupsort_reorder_user($uid, $all_usergroups);
 	}
 	$db->free_result($query);
 }
 
-function grouporder_reorder_user($uid, $all_usergroups)
+function groupsort_reorder_user($uid, $all_usergroups)
 {
 	global $db;
 	
