@@ -43,7 +43,7 @@ function groupsort_info()
 		'name' => 'Group Sort',
 		'description' => 'Sort the usergroups by display and sort each users groups by this sequence',
 		'website' => 'https://opt-community.de/',
-		'author' => 'Dieter Gobbers (@TerranUlm)',
+		'author' => 'Dieter Gobbers (@Terran_ulm)',
 		'authorsite' => 'https://opt-community.de/',
 		'version' => '1.0.1',
 		'guid' => '',
