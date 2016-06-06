@@ -1,7 +1,7 @@
 <?php
 // english
 
-$l['groupsort_title'] = 'Group Order';
+$l['groupsort_title'] = 'Group Sort';
 
 $l['groupsort_rank_description'] = 'sort each users groups by display order';
 $l['groupsort_rank_description'] = 'lower number = higher priority, the highest priority group a users is a member of will be his primary and display group.<br>'.
