@@ -1,6 +1,6 @@
 <?php
 /*
-Group Order Plugin for MyBB
+Group Sort Plugin for MyBB
 Copyright (C) 2013 Dieter Gobbers
 
 The MIT License (MIT)
