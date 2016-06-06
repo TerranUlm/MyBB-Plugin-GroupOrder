@@ -47,7 +47,7 @@ function groupsort_info()
 		'authorsite' => 'https://opt-community.de/',
 		'version' => '1.0.1',
 		'guid' => '',
-		'compatibility' => '16*'
+		'compatibility' => '18*'
 	);
 }
 
