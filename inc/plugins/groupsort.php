@@ -45,7 +45,7 @@ function groupsort_info()
 		'website' => 'https://opt-community.de/',
 		'author' => 'Dieter Gobbers (@Terran_ulm)',
 		'authorsite' => 'https://opt-community.de/',
-		'version' => '1.1.0',
+		'version' => '1.1.1',
 		'guid' => '',
 		'compatibility' => '18*'
 	);
