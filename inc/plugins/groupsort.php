@@ -42,10 +42,10 @@ function groupsort_info()
 	return array(
 		'name' => 'Group Sort',
 		'description' => 'Sort the usergroups by display and sort each users groups by this sequence',
-		'website' => 'https://opt-community.de/',
+		'website' => 'https://github.com/TerranUlm/MyBB-Plugin-GroupSort',
 		'author' => 'Dieter Gobbers (@Terran_ulm)',
 		'authorsite' => 'https://opt-community.de/',
-		'version' => '1.1.3',
+		'version' => '1.1.4',
 		'codename' => 'opt_groupsort',
 		'compatibility' => '18*'
 	);
