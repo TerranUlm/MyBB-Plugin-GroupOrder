@@ -26,9 +26,9 @@ if(!defined("IN_MYBB"))
 }
 function task_grouporder($task)
 {
-        grouporder_reorder_all_users( );
+        groupsort_reorder_all_users( );
 
-        add_task_log($task, "reordered all groups of all users");
+        add_task_log($task, "sorted all groups of all users");
 }
 
 ?>
